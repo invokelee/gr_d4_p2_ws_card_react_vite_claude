@@ -1,0 +1,117 @@
+// 한국 태생 유명인 목록 및 배경 이미지 분위기 매핑
+// bg-img-01: 밝은 파랑 — 에너지/도전/스포츠
+// bg-img-02: 청록 수채화 — 예술/창의/문화
+// bg-img-03: 하늘색 직물 — 지식/평화/학문
+// bg-img-04: 연두/초록 — 성장/혁신/미래
+// bg-img-05: 붉은색 — 열정/독립/의지
+
+export const PEOPLE = [
+  {
+    id: 1,
+    name: "세종대왕",
+    nameEn: "King Sejong the Great",
+    years: "1397 – 1450",
+    achievement: "조선 제4대 국왕, 훈민정음(한글) 창제",
+    achievementEn: "4th King of Joseon Dynasty, Creator of Hangul",
+    bgImage: "bg-img-03",
+    mood: "knowledge",
+  },
+  {
+    id: 2,
+    name: "이순신",
+    nameEn: "Admiral Yi Sun-sin",
+    years: "1545 – 1598",
+    achievement: "조선 중기 무신, 임진왜란 3대첩 승리 이끈 해군 제독",
+    achievementEn: "Naval admiral who led Korea to victory in the Imjin War",
+    bgImage: "bg-img-05",
+    mood: "valor",
+  },
+  {
+    id: 3,
+    name: "유관순",
+    nameEn: "Yu Gwan-sun",
+    years: "1902 – 1920",
+    achievement: "3·1 운동의 상징, 독립운동가",
+    achievementEn: "Symbol of the March 1st Movement, independence activist",
+    bgImage: "bg-img-05",
+    mood: "resistance",
+  },
+  {
+    id: 4,
+    name: "안중근",
+    nameEn: "Ahn Jung-geun",
+    years: "1879 – 1910",
+    achievement: "독립운동가, 의사·서예가",
+    achievementEn: "Independence activist, calligrapher, and patriot",
+    bgImage: "bg-img-05",
+    mood: "determination",
+  },
+  {
+    id: 5,
+    name: "김환기",
+    nameEn: "Kim Whan-ki",
+    years: "1913 – 1974",
+    achievement: "한국 현대미술의 선구자, 추상화가",
+    achievementEn: "Pioneer of Korean modern art and abstract painter",
+    bgImage: "bg-img-02",
+    mood: "art",
+  },
+  {
+    id: 6,
+    name: "박경리",
+    nameEn: "Park Kyung-ni",
+    years: "1926 – 2008",
+    achievement: "대하소설 《토지》 작가, 한국 문학의 거장",
+    achievementEn: "Author of the epic novel 'Land', master of Korean literature",
+    bgImage: "bg-img-02",
+    mood: "literature",
+  },
+  {
+    id: 7,
+    name: "박지성",
+    nameEn: "Park Ji-sung",
+    years: "1981 –",
+    achievement: "맨체스터 유나이티드 소속 한국 최고의 축구선수",
+    achievementEn: "South Korea's greatest footballer, Manchester United star",
+    bgImage: "bg-img-01",
+    mood: "energy",
+  },
+  {
+    id: 8,
+    name: "BTS (방탄소년단)",
+    nameEn: "BTS (Bangtan Sonyeondan)",
+    years: "2013 –",
+    achievement: "글로벌 K-pop 그룹, UN 연설 및 세계 문화적 영향",
+    achievementEn: "Global K-pop group, UN speech, worldwide cultural impact",
+    bgImage: "bg-img-04",
+    mood: "inspiration",
+  },
+  {
+    id: 9,
+    name: "봉준호",
+    nameEn: "Bong Joon-ho",
+    years: "1969 –",
+    achievement: "영화 《기생충》으로 아카데미 작품상 수상한 영화감독",
+    achievementEn: "Film director who won the Academy Award for 'Parasite'",
+    bgImage: "bg-img-02",
+    mood: "creativity",
+  },
+  {
+    id: 10,
+    name: "손흥민",
+    nameEn: "Son Heung-min",
+    years: "1992 –",
+    achievement: "토트넘 홋스퍼의 아시아 최고 축구선수",
+    achievementEn: "Asia's finest footballer, Tottenham Hotspur captain",
+    bgImage: "bg-img-01",
+    mood: "energy",
+  },
+];
+
+export const BG_IMAGES = {
+  "bg-img-01": "/img/bg-img-01-bekky-bekks-WpiVLsO9l8c-unsplash.jpg",
+  "bg-img-02": "/img/bg-img-02-chinigraphy-CdEhjEF1C4M-unsplash.jpg",
+  "bg-img-03": "/img/bg-img-03-francesco-ungaro-2Mw7ieTa4Z4-unsplash.jpg",
+  "bg-img-04": "/img/bg-img-04-kseniya-lapteva-aMCyy7tSJXU-unsplash.jpg",
+  "bg-img-05": "/img/bg-img-05-lauris-rozentals-RyKLUffUhVM-unsplash.jpg",
+};

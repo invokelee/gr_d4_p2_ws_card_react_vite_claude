@@ -1,0 +1,223 @@
+/* ===================================
+   App Layout — Material Design 3
+   Adaptive: Compact / Medium / Expanded
+   Design ref: xelarobotics.com
+   =================================== */
+
+/* ===== Header ===== */
+.app-header {
+  background: linear-gradient(
+    135deg,
+    #030b1f 0%,
+    #061430 60%,
+    #0a1e48 100%
+  );
+  border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+  padding: 40px 24px 32px;
+}
+
+.app-header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.app-header__logo-mark {
+  font-size: 2rem;
+  color: var(--md-sys-color-tertiary, #00d4ff);
+  line-height: 1;
+  filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.6));
+}
+
+.app-header__title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.app-header__subtitle {
+  font-size: 0.85rem;
+  color: var(--md-sys-color-tertiary, #00d4ff);
+  margin: 2px 0 0;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.app-header__desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+/* ===== Navigation / Category Filter ===== */
+.app-nav {
+  background: rgba(5, 15, 40, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+
+.app-nav__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 4px;
+  padding: 10px 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.app-nav__inner::-webkit-scrollbar {
+  display: none;
+}
+
+.app-nav__item {
+  padding: 8px 20px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.app-nav__item:hover {
+  background: rgba(0, 212, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.app-nav__item--active {
+  background: rgba(0, 212, 255, 0.12);
+  border-color: rgba(0, 212, 255, 0.35);
+  color: #00d4ff;
+}
+
+/* ===== Main Content ===== */
+.app-main {
+  background: #04091f;
+  min-height: calc(100vh - 200px);
+  padding: 32px 20px 48px;
+}
+
+/* ===== View Mode Toggle ===== */
+.app-nav__divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0 4px;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.view-toggle {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.view-toggle__btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.view-toggle__btn:hover {
+  background: rgba(0, 212, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.view-toggle__btn--active {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.4);
+  color: #00d4ff;
+}
+
+/* ===== Adaptive Card Grid — M3 Breakpoints ===== */
+/* Compact: < 600px   → 1 column  */
+/* Medium:  600–840px → 2 columns */
+/* Expanded: > 840px  → 3 columns */
+/* Wide:   > 1200px   → 4 columns */
+
+.card-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+}
+
+@media (min-width: 840px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Card grid item — fixed aspect ratio */
+.card-grid__item {
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-grid__item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 36px rgba(0, 212, 255, 0.15), 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Footer ===== */
+.app-footer {
+  background: #020713;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 20px 24px;
+  text-align: center;
+}
+
+.app-footer p {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+}
