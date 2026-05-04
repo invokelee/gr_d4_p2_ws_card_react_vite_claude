@@ -2,7 +2,8 @@
 
 한국 태생의 위인들이 남긴 명언을 GPT API로 생성하여 카드 UI로 제공하는 웹 앱입니다.
 
-🔗 **라이브 데모**: https://invokelee.github.io/gr_d4_p2_ws_card_react_vite_claude/
+🔗 **GitHub Pages**: https://invokelee.github.io/gr_d4_p2_ws_card_react_vite_claude/
+🔗 **Netlify**: https://react-wisdom-cards.netlify.app/
 
 ---
 
@@ -90,7 +91,7 @@
 | 디자인 시스템 | Material Design 3 (Adaptive Layout) |
 | 디자인 테마 | Xela Robotics 스타일 (네이비 + Cyan) |
 | 스타일 | 순수 CSS (외부 UI 라이브러리 없음) |
-| 배포 | GitHub Pages + GitHub Actions |
+| 배포 | GitHub Pages / Netlify |
 
 ---
 
@@ -132,22 +133,46 @@ npm run build
 
 ---
 
-## GitHub Pages 배포
+## 배포
 
-### 자동 배포 (GitHub Actions)
+### GitHub Pages (자동 배포)
 
-`main` 브랜치에 push 하면 자동으로 빌드 및 배포됩니다.
+`main` 브랜치에 push 하면 GitHub Actions가 자동으로 빌드·배포합니다.
 
 **사전 설정:**
-1. GitHub 저장소 → **Settings → Secrets and variables → Actions**
-2. `VITE_OPENAI_API_KEY` secret 등록
-3. 저장소 → **Settings → Pages → Source: GitHub Actions** 선택
+1. 저장소 → **Settings → Secrets and variables → Actions**
+   - `VITE_OPENAI_API_KEY` secret 등록
+2. 저장소 → **Settings → Pages → Source: GitHub Actions** 선택
 
-### 배포 URL
-
+**배포 URL:**
 ```
 https://invokelee.github.io/gr_d4_p2_ws_card_react_vite_claude/
 ```
+
+---
+
+### Netlify (자동 배포)
+
+GitHub 저장소 연결 시 push마다 자동으로 빌드·배포됩니다.
+
+**사전 설정:**
+1. [app.netlify.com](https://app.netlify.com) → 사이트 선택
+2. **Project configuration → Build & deploy → Environment variables**
+3. `VITE_OPENAI_API_KEY` 등록 후 **Trigger deploy**
+
+**배포 URL:**
+```
+https://react-wisdom-cards.netlify.app/
+```
+
+**배포 환경 자동 분기:**
+
+| 빌드 환경 | base 경로 |
+|------|------|
+| GitHub Actions | `/gr_d4_p2_ws_card_react_vite_claude/` |
+| Netlify / 로컬 | `/` |
+
+> `GITHUB_ACTIONS` 환경변수로 자동 감지하므로 별도 설정 불필요
 
 ---
 
@@ -179,6 +204,7 @@ ws_card_react_vite/
 │   └── main.jsx
 ├── .env.example
 ├── .gitignore
+├── netlify.toml                # Netlify 빌드 설정 + SPA 리다이렉트
 ├── vite.config.js
 └── package.json
 ```
