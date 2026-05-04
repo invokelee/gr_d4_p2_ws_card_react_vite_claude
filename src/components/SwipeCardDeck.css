@@ -207,21 +207,28 @@
   padding-left: 14px;
 }
 
-.deck__quote-ko {
+/* 아이콘 버튼 + 텍스트 인라인 행 */
+.deck__quote-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 0 0 10px;
+}
+
+.deck__quote-line span {
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
   line-height: 1.75;
-  margin: 0 0 10px;
   word-break: keep-all;
 }
 
-.deck__quote-en {
+.deck__quote-line--en span {
   font-size: 0.78rem;
+  font-weight: 400;
   color: rgba(255,255,255,0.62);
   font-style: italic;
   line-height: 1.6;
-  margin: 0;
 }
 
 .deck__footer {
@@ -250,6 +257,15 @@
   padding-top: 12px;
   margin: 0;
   word-break: keep-all;
+}
+
+/* ===== Back face actions (speak + tap hint) ===== */
+.deck__back-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 /* ===== Arrows ===== */

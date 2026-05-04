@@ -2,6 +2,8 @@
 
 한국 태생의 위인들이 남긴 명언을 GPT API로 생성하여 카드 UI로 제공하는 웹 앱입니다.
 
+🔗 **라이브 데모**: https://invokelee.github.io/gr_d4_p2_ws_card_react_vite_claude/
+
 ---
 
 ## 주요 기능
@@ -10,13 +12,14 @@
 - **한국어 + 영문 번역** — 명언 하단에 영문 번역 자동 제공
 - **명언 맥락 설명** — 명언의 배경과 의미를 2~3문장으로 설명
 - **3D 카드 플립 애니메이션** — 앞면(인물 정보) ↔ 뒷면(명언) 전환
-- **분위기별 배경 이미지** — 인물의 특성(열정/예술/지식/에너지/성장)에 맞는 배경 자동 적용
+- **분위기별 배경 이미지** — 인물 특성(열정/예술/지식/에너지/성장)에 맞는 배경 자동 적용
 - **카테고리 필터** — 전체 / 역사 / 예술·문화 / 스포츠 / 현대
 - **뷰 모드 전환** — 📱 모바일 뷰 / 🖥 데스크톱 뷰 토글 버튼
+- **명언 읽기 (TTS)** — 명언 텍스트 옆 스피커 아이콘으로 한국어/영어 음성 재생
 
 ---
 
-## 뷰 모드
+## 화면 구성
 
 ### 데스크톱 뷰 (그리드)
 - M3 Adaptive Layout 적용
@@ -32,6 +35,31 @@
 - **카드 탭** 한 번으로 명언 플립 / 다시 탭하면 앞면 복귀
 - 하단 **dot 인디케이터** + N/총 카운터
 - 한 번 불러온 명언은 캐시 → 재요청 없음
+
+---
+
+## TTS (명언 읽기) 기능
+
+명언 카드 뒷면의 각 텍스트 줄 앞에 스피커 아이콘 버튼 배치:
+
+```
+🔊  "백성을 사랑해야 한다."          ← 한국어 버튼
+🔊  "You must love your people."    ← 영어 버튼
+```
+
+- **gpt-4o-mini-tts** 모델 사용
+- 인물 분위기별 Voice 자동 선택
+
+| 분위기 | Voice | 특징 |
+|------|------|------|
+| 역사·무게감 (이순신, 안중근 등) | onyx | 깊고 권위 있음 |
+| 예술·문학 (김환기, 박경리, 봉준호) | fable | 따뜻하고 표현력 있음 |
+| 스포츠·현대 (박지성, BTS, 손흥민) | nova | 밝고 활기차게 |
+| 기본 (세종대왕) | alloy | 중립·균형감 |
+
+- 재생 중 **음파 바 애니메이션** 표시
+- 재생 중 버튼 재클릭 시 **즉시 정지**
+- 카드 앞면 전환 시 **자동 정지**
 
 ---
 
@@ -57,10 +85,12 @@
 | 항목 | 내용 |
 |------|------|
 | 프레임워크 | React 18 + Vite 4 |
-| AI API | OpenAI GPT-4o mini |
+| 명언 생성 | OpenAI GPT-4o mini |
+| 음성 합성 | OpenAI gpt-4o-mini-tts |
 | 디자인 시스템 | Material Design 3 (Adaptive Layout) |
 | 디자인 테마 | Xela Robotics 스타일 (네이비 + Cyan) |
 | 스타일 | 순수 CSS (외부 UI 라이브러리 없음) |
+| 배포 | GitHub Pages + GitHub Actions |
 
 ---
 
@@ -78,7 +108,7 @@ npm install
 cp .env.example .env
 ```
 
-`.env` 파일을 열고 OpenAI API 키를 입력합니다.
+`.env` 파일에 OpenAI API 키를 입력합니다.
 
 ```env
 VITE_OPENAI_API_KEY=sk-your-api-key-here
@@ -102,27 +132,53 @@ npm run build
 
 ---
 
+## GitHub Pages 배포
+
+### 자동 배포 (GitHub Actions)
+
+`main` 브랜치에 push 하면 자동으로 빌드 및 배포됩니다.
+
+**사전 설정:**
+1. GitHub 저장소 → **Settings → Secrets and variables → Actions**
+2. `VITE_OPENAI_API_KEY` secret 등록
+3. 저장소 → **Settings → Pages → Source: GitHub Actions** 선택
+
+### 배포 URL
+
+```
+https://invokelee.github.io/gr_d4_p2_ws_card_react_vite_claude/
+```
+
+---
+
 ## 프로젝트 구조
 
 ```
 ws_card_react_vite/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml          # GitHub Actions 자동 배포
 ├── public/
 │   └── img/                    # 배경 이미지 5종 (Unsplash)
 ├── src/
 │   ├── data/
 │   │   └── people.js           # 인물 데이터 + 배경 이미지 매핑
 │   ├── services/
-│   │   └── openai.js           # GPT API 호출 로직
+│   │   ├── openai.js           # GPT 명언 생성 API
+│   │   └── tts.js              # gpt-4o-mini-tts 음성 합성 API
 │   ├── components/
 │   │   ├── QuoteCard.jsx       # 데스크톱용 플립 카드
 │   │   ├── QuoteCard.css
 │   │   ├── SwipeCardDeck.jsx   # 모바일용 스와이프 덱
-│   │   └── SwipeCardDeck.css
-│   ├── App.jsx                 # 레이아웃 / 카테고리 필터 / 뷰 모드 토글
+│   │   ├── SwipeCardDeck.css
+│   │   ├── SpeakBtn.jsx        # 인라인 TTS 아이콘 버튼
+│   │   └── SpeakBtn.css
+│   ├── App.jsx                 # 레이아웃 / 필터 / 뷰 모드 토글
 │   ├── App.css
 │   ├── index.css               # M3 디자인 토큰 + 전역 스타일
 │   └── main.jsx
 ├── .env.example
+├── .gitignore
 ├── vite.config.js
 └── package.json
 ```

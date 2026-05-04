@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { BG_IMAGES } from "../data/people";
 import { fetchQuote } from "../services/openai";
+import { stopTTS } from "../services/tts";
+import SpeakBtn from "./SpeakBtn";
 import "./QuoteCard.css";
 
 export default function QuoteCard({ person }) {
@@ -26,6 +28,7 @@ export default function QuoteCard({ person }) {
   }
 
   function handleFlipBack() {
+    stopTTS();
     setFlipped(false);
   }
 
@@ -72,8 +75,14 @@ export default function QuoteCard({ person }) {
             <div className="quote-card__content quote-card__content--quote">
               <div className="quote-card__quote-scroll">
                 <blockquote className="quote-card__quote">
-                  <p className="quote-card__quote-ko">&#8220;{quote.quote_ko}&#8221;</p>
-                  <p className="quote-card__quote-en">"{quote.quote_en}"</p>
+                  <p className="quote-card__quote-line">
+                    <SpeakBtn text={quote.quote_ko} lang="ko" mood={person.mood} />
+                    <span>&#8220;{quote.quote_ko}&#8221;</span>
+                  </p>
+                  <p className="quote-card__quote-line quote-card__quote-line--en">
+                    <SpeakBtn text={quote.quote_en} lang="en" mood={person.mood} />
+                    <span>"{quote.quote_en}"</span>
+                  </p>
                 </blockquote>
                 <footer className="quote-card__footer">
                   <span className="quote-card__author">— {person.name}</span>

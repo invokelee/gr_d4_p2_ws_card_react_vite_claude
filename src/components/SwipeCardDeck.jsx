@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 import { BG_IMAGES } from "../data/people";
 import { fetchQuote } from "../services/openai";
+import { stopTTS } from "../services/tts";
+import SpeakBtn from "./SpeakBtn";
 import "./SwipeCardDeck.css";
 
 export default function SwipeCardDeck({ people }) {
@@ -137,10 +139,19 @@ export default function SwipeCardDeck({ people }) {
               <div className="deck__overlay deck__overlay--dark" />
               {quote && (
                 <div className="deck__face-content">
-                  <div className="deck__quote-scroll">
+                  <div
+                    className="deck__quote-scroll"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <blockquote className="deck__blockquote">
-                      <p className="deck__quote-ko">&#8220;{quote.quote_ko}&#8221;</p>
-                      <p className="deck__quote-en">"{quote.quote_en}"</p>
+                      <p className="deck__quote-line">
+                        <SpeakBtn text={quote.quote_ko} lang="ko" mood={person.mood} />
+                        <span>&#8220;{quote.quote_ko}&#8221;</span>
+                      </p>
+                      <p className="deck__quote-line deck__quote-line--en">
+                        <SpeakBtn text={quote.quote_en} lang="en" mood={person.mood} />
+                        <span>"{quote.quote_en}"</span>
+                      </p>
                     </blockquote>
                     <footer className="deck__footer">
                       <span className="deck__author">— {person.name}</span>

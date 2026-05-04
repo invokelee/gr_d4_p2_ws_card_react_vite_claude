@@ -1,0 +1,58 @@
+.speak-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  line-height: 1;
+}
+
+.speak-btn-icon:hover {
+  background: rgba(0, 212, 255, 0.12);
+  border-color: rgba(0, 212, 255, 0.35);
+  color: #00d4ff;
+}
+
+.speak-btn-icon--playing {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.45);
+  color: #00d4ff;
+}
+
+.speak-btn-icon__svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* 재생 중 음파 바 애니메이션 */
+.speak-btn-icon__bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 1.5px;
+  height: 12px;
+}
+
+.speak-btn-icon__bars span {
+  display: block;
+  width: 2.5px;
+  border-radius: 2px;
+  background: #00d4ff;
+  animation: speak-bar 0.7s ease-in-out infinite;
+}
+
+.speak-btn-icon__bars span:nth-child(1) { height: 6px;  animation-delay: 0s; }
+.speak-btn-icon__bars span:nth-child(2) { height: 11px; animation-delay: 0.15s; }
+.speak-btn-icon__bars span:nth-child(3) { height: 5px;  animation-delay: 0.3s; }
+
+@keyframes speak-bar {
+  0%, 100% { transform: scaleY(0.4); opacity: 0.6; }
+  50%       { transform: scaleY(1);   opacity: 1; }
+}

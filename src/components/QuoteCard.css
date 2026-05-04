@@ -169,17 +169,25 @@
   padding-left: 16px;
 }
 
-.quote-card__quote-ko {
+/* 아이콘 버튼 + 텍스트 인라인 행 */
+.quote-card__quote-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin: 0 0 10px;
+}
+
+.quote-card__quote-line span {
   font-size: 1.05rem;
   font-weight: 600;
   color: #ffffff;
   line-height: 1.7;
-  margin: 0 0 10px;
   word-break: keep-all;
 }
 
-.quote-card__quote-en {
+.quote-card__quote-line--en span {
   font-size: 0.82rem;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.68);
   font-style: italic;
   line-height: 1.6;
@@ -213,6 +221,15 @@
   padding-top: 12px;
   margin: 0;
   word-break: keep-all;
+}
+
+/* ===== Actions row (speak + back button) ===== */
+.quote-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 /* ===== Button ===== */
