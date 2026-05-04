@@ -1,0 +1,80 @@
+/* ===== Speak Buttons Group ===== */
+.speak-btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.speak-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.speak-btn:hover {
+  background: rgba(0, 212, 255, 0.12);
+  border-color: rgba(0, 212, 255, 0.35);
+  color: #00d4ff;
+}
+
+.speak-btn--playing {
+  background: rgba(0, 212, 255, 0.18);
+  border-color: rgba(0, 212, 255, 0.5);
+  color: #00d4ff;
+}
+
+/* ===== Flag ===== */
+.speak-btn__flag {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ===== Speaker icon (SVG) ===== */
+.speak-btn__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ===== Playing animation (3 bars) ===== */
+.speak-btn__icon--playing {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  width: 16px;
+  height: 14px;
+}
+
+.speak-btn__icon--playing span {
+  display: block;
+  width: 3px;
+  border-radius: 2px;
+  background: #00d4ff;
+  animation: sound-bar 0.8s ease-in-out infinite;
+}
+
+.speak-btn__icon--playing span:nth-child(1) {
+  height: 8px;
+  animation-delay: 0s;
+}
+.speak-btn__icon--playing span:nth-child(2) {
+  height: 14px;
+  animation-delay: 0.15s;
+}
+.speak-btn__icon--playing span:nth-child(3) {
+  height: 6px;
+  animation-delay: 0.3s;
+}
+
+@keyframes sound-bar {
+  0%, 100% { transform: scaleY(0.4); opacity: 0.6; }
+  50%       { transform: scaleY(1);   opacity: 1; }
+}
